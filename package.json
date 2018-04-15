@@ -1,8 +1,16 @@
 {
   "name": "ng-electron",
-  "version": "0.0.0",
+  "description": "Demo electron app build on top of Angular 5",
+  "version": "0.0.1",
+  "author": {
+    "name": "Shashikant Maharshi",
+    "email": "maharshishashikant@gmail.com"
+  },
   "license": "MIT",
   "main": "main.js",
+  "build": {
+    "appId": "com.ng-electron.app"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +19,13 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron": "ng build && electron .",
-    "electron-aot": "ng build --prod && electron ."
+    "electron-aot": "ng build --prod && electron .",
+    "package-mac":
+      "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
+    "package-win":
+      "electron-packager . ng-electron --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-linux":
+      "electron-packager . ng-electron --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +52,7 @@
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
     "electron": "^1.8.4",
+    "electron-packager": "^12.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
